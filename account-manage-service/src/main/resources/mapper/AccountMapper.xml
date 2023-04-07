@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.artar.accountManageService.mapper.AccountMapper">
+
+    <select id="getAllAccount" resultType="com.artar.accountManageService.model.Account" >
+        select * from artar_account
+    </select>
+
+    <insert id="addEthAccountList" parameterType="list">
+        insert into artar_account (
+                                   address, public_key, private_key, mnemonic,status, file_name, chain
+                                   )
+        VALUES
+                <foreach collection="accountList" item="item"  separator="," index="index">
+            (
+                    #{item.address},
+                    #{item.publicKey},
+                    #{item.privateKey},
+                    #{item.mnemonic},
+                    #{item.status},
+                    #{item.fileName},
+                    #{item.chain}
+            )
+                </foreach>
+    </insert>
+
+
+</mapper>
