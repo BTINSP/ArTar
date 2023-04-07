@@ -33,7 +33,6 @@ public class AccountControllerServiceImpl implements AccountControllerService {
 
                 List<Object> result = new ArrayList<>();
                 for (Account account : allUser) {
-                    System.out.println(account);
                     HashMap<String, Object> entity = new HashMap<>();
                     entity.put("id",account.getId());
                     entity.put("address",account.getAddress());
@@ -66,7 +65,7 @@ public class AccountControllerServiceImpl implements AccountControllerService {
         }
 
         //  实例化任务
-        CreateAccountTask createAccountTask = new CreateAccountTask(100,accountLocalPath);
+        CreateAccountTask createAccountTask = new CreateAccountTask(count,accountLocalPath);
         //  创建线程池
         ExecutorService executorService = Executors.newFixedThreadPool(8);
         //  开始任务
